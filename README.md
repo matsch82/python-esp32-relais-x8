@@ -24,7 +24,7 @@ The web UI at `http://<board>/` uses exactly three endpoints:
 | Method / path                                | Purpose                                                 |
 |----------------------------------------------|---------------------------------------------------------|
 | `GET /json`                                  | Return current board state as JSON                      |
-| `GET /cmd?cb=outputPin<N>&v=<0\|1>`          | Set output `N` to the given value (`0` = off, `1` = on) |
+| `GET /cmd?cb=cboutputPin<N>&v=<0\|1>`        | Set output `N` to the given value (`0` = off, `1` = on). The `cb` value is the HTML checkbox id (`cboutputPinN`). |
 | `GET /cmd?toggle=<N>`                        | Toggle output `N`                                        |
 
 Output indices:

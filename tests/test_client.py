@@ -52,7 +52,12 @@ class _MockBoardHandler(BaseHTTPRequestHandler):
 
         if parsed.path == "/cmd":
             if "cb" in query and "v" in query:
+                # Firmware accepts the HTML checkbox id (``cboutputPinN``)
+                # and maps it back to the corresponding ``outputPinN``
+                # state key.
                 pin = query["cb"]
+                if pin.startswith("cb"):
+                    pin = pin[2:]
                 self.server.state[pin] = int(query["v"])
             elif "toggle" in query:
                 pin = f"outputPin{int(query['toggle'])}"
@@ -169,7 +174,7 @@ class RelayBoardTests(unittest.TestCase):
             cmd_requests = [r for r in mock.server.requests if r[0] == "/cmd"]
             self.assertEqual(len(cmd_requests), 1)
             _, query = cmd_requests[0]
-            self.assertEqual(query, {"cb": "outputPin2", "v": "1"})
+            self.assertEqual(query, {"cb": "cboutputPin2", "v": "1"})
 
     def test_invalid_relay_index_raises(self) -> None:
         with _MockBoard() as mock:

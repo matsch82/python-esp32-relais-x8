@@ -13,8 +13,11 @@ endpoints over plain HTTP:
       input pins, and ``outputPinN`` reflects the 8 relays (0..7) plus
       an on-board LED (8).
 
-* ``GET /cmd?cb=outputPin<N>&v=<0|1>``
+* ``GET /cmd?cb=cboutputPin<N>&v=<0|1>``
       Sets output ``N`` to the requested level (0 = off, 1 = on).
+      The ``cb`` parameter carries the HTML checkbox id, which is the
+      output pin name with a ``cb`` prefix (e.g. ``cboutputPin0`` for
+      relay 1).
 
 * ``GET /cmd?toggle=<N>``
       Toggles output ``N`` (0..7 for the relays, 8 for the on-board
@@ -173,9 +176,13 @@ class RelayBoard:
         relays and :data:`LED_INDEX` (8) for the on-board LED.
         """
         _check_output_index(index)
+        # The firmware's ``cb`` query parameter carries the HTML checkbox
+        # id from the web UI, which is the pin name prefixed with ``cb``
+        # (e.g. ``cboutputPin0``). Without that prefix the request is
+        # silently ignored.
         self._request(
             "/cmd",
-            {"cb": f"outputPin{index}", "v": "1" if on else "0"},
+            {"cb": f"cboutputPin{index}", "v": "1" if on else "0"},
         )
 
     def toggle_output(self, index: int) -> None:
