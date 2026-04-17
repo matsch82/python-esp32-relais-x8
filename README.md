@@ -8,6 +8,15 @@ Small Python client for the **ESP32 Relay X8** board (firmware 24.01).
 It wraps the board's minimal HTTP API in a friendly Python interface
 and ships with a tiny CLI. Depends only on the Python standard library.
 
+## Board firmware
+
+This client targets the **web-server firmware for the ESP32 Relay X8**
+published by Werner Rothschopf. Flash the board with that firmware
+first; this library simply talks to the HTTP API it exposes.
+
+Firmware and flashing instructions:
+https://werner.rothschopf.net/microcontroller/202208_esp32_relay_x8_en.htm
+
 ## The board's HTTP API
 
 The web UI at `http://<board>/` uses exactly three endpoints:
