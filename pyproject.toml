@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esp32-relais-x8"
+version = "0.1.0"
+description = "Python client for the ESP32 Relay X8 board HTTP API"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [{ name = "Matthias" }]
+keywords = ["esp32", "relay", "home-automation", "http", "iot"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Home Automation",
+    "Topic :: System :: Hardware",
+]
+# The client uses only the standard library (``urllib`` + ``json``).
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[project.urls]
+Homepage = "https://github.com/your-user/python-esp32-relais-x8"
+Repository = "https://github.com/your-user/python-esp32-relais-x8"
+Issues = "https://github.com/your-user/python-esp32-relais-x8/issues"
+Changelog = "https://github.com/your-user/python-esp32-relais-x8/blob/main/CHANGELOG.md"
+
+[project.scripts]
+esp32-relais-x8 = "esp32_relais_x8.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["esp32_relais_x8*"]
